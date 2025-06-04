@@ -1,0 +1,16 @@
+#!/bin/sh
+
+[ -f /etc/config/ssid-auto ] || exit 0
+
+case "$ACTION" in
+    "ifup")
+        [ "$INTERFACE" = "lan" ] && {
+            /etc/init.d/ssid-auto enabled && /etc/init.d/ssid-auto start
+        }
+        ;;
+    "ifdown")
+        [ "$INTERFACE" = "lan" ] && {
+            /etc/init.d/ssid-auto stop
+        }
+        ;;
+esac
