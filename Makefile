@@ -109,5 +109,6 @@ exit 0
 endef
 
 $(eval $(call BuildPackage,ssid-auto))
+
 # [新增] LuCI包构建
 $(eval $(call BuildLuciPackage,ssid-auto))
