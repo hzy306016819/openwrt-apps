@@ -1,0 +1,20 @@
+#!/bin/sh
+# [新增] 首次安装配置脚本
+
+# 检查配置文件
+[ -f /etc/config/ssid-auto ] || {
+    logger -t ssid-auto "ERROR: Config file missing!"
+    exit 1
+}
+
+# 设置权限
+chmod 600 /etc/config/ssid-auto
+chmod 755 /usr/bin/ssid-auto 2>/dev/null
+
+# 验证工具是否存在
+if ! command -v iw >/dev/null && ! command -v iwinfo >/dev/null; then
+    logger -t ssid-auto "CRITICAL: Neither iw nor iwinfo found!"
+    exit 1
+fi
+
+exit 0
