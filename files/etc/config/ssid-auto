@@ -1,0 +1,8 @@
+config settings 'global'
+    option enabled '0'            # 主开关
+    option weak_5g '-70'          # 5G弱信号阈值(dBm)
+    option strong_2g '-60'        # 2.4G强信号阈值(dBm)
+    option enable_kick '0'        # 启用2.4G弱信号剔除
+    option weak_2g '-75'          # 2.4G剔除阈值(dBm)
+    option interval '30'          # 检查间隔(秒)
+    list whitelist '00:11:22:33:44:55'  # MAC白名单
