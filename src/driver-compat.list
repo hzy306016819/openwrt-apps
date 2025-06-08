@@ -1,7 +1,0 @@
-# [新增] 驱动兼容性清单
-# 格式: 驱动名称    推荐工具    最低信号精度(dB)
-ath9k           iw          3
-ath10k          iw          2
-mt76            iw          4
-brcmfmac        iwinfo      6
-broadcom        iwinfo      8
