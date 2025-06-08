@@ -1,0 +1,25 @@
+{
+  "luci-mod-status-autocore": {
+    "description": "Grant access to overview-widgets",
+    "read": {
+      "ubus": {
+        "luci": ["getCPUInfo", "getTempInfo"]
+      },
+      "file": {
+        "/etc/overview.json": ["read"],
+        "/www/luci-static/resources/view/status/include": ["list"],
+        "/sbin/swconfig dev switch0 show": ["exec"],
+        "/sbin/ip -[46] neigh show dev br-lan": ["exec"],
+        "/sbin/ip -[46] neigh flush dev br-lan": ["exec"],
+        "/usr/bin/fping *": ["exec"],
+        "/usr/sbin/iwpriv *": ["exec"]
+      }
+    },
+    "write": {
+      "file": {
+        "/bin/mv": ["exec"],
+        "/etc/overview.json": ["write"]
+      }
+    }
+  }
+}
