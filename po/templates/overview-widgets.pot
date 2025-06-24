@@ -1,47 +1,44 @@
+# Simplified Overview Widgets translation template
+# Copyright (C) 2025 wsk170 <wsk170@gmail.com>
+# This file is distributed under the same license as the luci-app-overview-widgets package.
 msgid ""
-msgstr "Content-Type: text/plain; charset=UTF-8"
-
-#: htdocs/luci-static/resources/view/status/include/99_manager.js:97
-msgid "Cancel"
 msgstr ""
+"Project-Id-Version: luci-app-overview-widgets\n"
+"Report-Msgid-Bugs-To: wsk170 <wsk170@gmail.com>\n"
+"POT-Creation-Date: 2025-03-01 12:00+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
-#: htdocs/luci-static/resources/view/status/include/03_users.js:409
-msgid "Disconnect"
-msgstr ""
-
-#: root/usr/share/rpcd/acl.d/luci-app-overview-widgets.json:3
-msgid "Grant access to overview-widgets"
-msgstr ""
-
-#: htdocs/luci-static/resources/view/status/include/03_users.js:203
-#: htdocs/luci-static/resources/view/status/include/03_users.js:212
-msgid "Loading"
-msgstr ""
-
-#: htdocs/luci-static/resources/view/status/include/03_users.js:136
-msgid "MHz"
-msgstr ""
-
-#: htdocs/luci-static/resources/view/status/include/03_users.js:136
-msgid "Mbit/s"
-msgstr ""
-
-#: htdocs/luci-static/resources/view/status/include/03_users.js:700
-msgid "Online Users"
-msgstr ""
-
-#: htdocs/luci-static/resources/view/status/include/02_ports.js:184
+#: htdocs/luci-static/resources/view/status/include/02_ports.js:45
 msgid "Port status"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/status/include/99_manager.js:91
-msgid "Save & Apply"
+#: htdocs/luci-static/resources/view/status/include/03_wifi_users.js:45
+msgid "WiFi Users"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/status/include/03_users.js:141
-msgid "Short GI"
+#: htdocs/luci-static/resources/view/status/include/03_wifi_users.js:145
+msgid "Disconnect"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/status/include/03_users.js:431
-msgid "Unable to disconnectClient:"
+#: htdocs/luci-static/resources/view/status/include/04_static_hosts.js:45
+msgid "Static Hosts"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/status/include/04_static_hosts.js:120
+msgid "Add"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/status/include/04_static_hosts.js:125
+msgid "Edit"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/status/include/03_wifi_users.js:138
+msgid "Unable to disconnect"
 msgstr ""
