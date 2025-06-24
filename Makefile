@@ -1,17 +1,17 @@
-# This is free software, licensed under the Apache License, Version 2.0 .
+# 这是自由软件，遵循Apache 2.0许可证
 #
-# Copyright (C) 2025 wsk170 <wsk170@gmail.com>
+# 版权所有 (C) 2025 wsk170 <wsk170@gmail.com>
 
 include $(TOPDIR)/rules.mk
 
-LUCI_TITLE:=overview widgets for LuCI
-LUCI_DEPENDS:=+luci-base
+# 包信息
+LUCI_TITLE:=Simplified Overview Widgets for LuCI  # 插件标题
+LUCI_DEPENDS:=+luci-base  # 依赖项
 
+# 许可证信息
 PKG_LICENSE:=Apache-2.0
 PKG_MAINTAINER:=wsk170 <wsk170@gmail.com>
 PKG_VERSION:=1.0.1
 PKG_RELEASE:=1
 
-include $(TOPDIR)/feeds/luci/luci.mk
-
-# call BuildPackage - OpenWrt buildroot signature
+include $(TOPDIR)/feeds/luci/luci.mk  # 包含LuCI构建系统
