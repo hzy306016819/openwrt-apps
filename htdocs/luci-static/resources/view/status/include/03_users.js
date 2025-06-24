@@ -53,7 +53,7 @@ function getOnlineUsers() {
     const lines = res.stdout.trim().split(/\n/);
     lines.forEach((line) => {
       const [ip, addr, mac] = line.split(/\s+/);
-      if (addr === 'lladdr') users.push(mac.toUpperCase());
+      if (addr === 'lladdr' && mac) users.push(mac.toUpperCase());
     });
     return users;
   });
@@ -89,17 +89,25 @@ function leaseToSeconds(leasetime) {
 function calcOnlineTime(dhcpLeases) {
   const lanLease = leaseToSeconds(uci.get('dhcp', 'lan', 'leasetime'));
   const hostsLease = {};
+  
   uci.sections('dhcp', 'host').forEach((host) => {
-    const mac = host.mac.toUpperCase();
-    hostsLease[mac] = leaseToSeconds(host?.leasetime) ?? lanLease;
+    const macs = Array.isArray(host.mac) ? host.mac : [host.mac || ''];
+    macs.forEach(mac => {
+      if (mac && typeof mac === 'string') {
+        const upperMac = mac.toUpperCase();
+        hostsLease[upperMac] = leaseToSeconds(host?.leasetime) ?? lanLease;
+      }
+    });
   });
 
   const onlineTime = {};
   dhcpLeases.forEach((host) => {
-    const mac = host.macaddr.toUpperCase();
-    if (host.expires > 0) {
-      const leasetime = hostsLease[mac] ?? lanLease;
-      onlineTime[mac] = leasetime - host.expires;
+    if (host.macaddr && typeof host.macaddr === 'string') {
+      const mac = host.macaddr.toUpperCase();
+      if (host.expires > 0) {
+        const leasetime = hostsLease[mac] ?? lanLease;
+        onlineTime[mac] = leasetime - host.expires;
+      }
     }
   });
   return onlineTime;
@@ -148,13 +156,10 @@ function formatWiFiRate(rxtx) {
 }
 
 function renderTitle(title, users, collapseID) {
-  // remove CSS overflow hidden to use sticky
-  // for Material theme
   const htmlStyle = window.getComputedStyle(document.documentElement);
   if (htmlStyle.overflowY === 'hidden') {
     document.documentElement.style.overflow = 'visible';
   }
-  // for Argon theme
   ['main', 'main-right'].forEach((className) => {
     const elmt = document.getElementsByClassName(className)[0];
     if (elmt) elmt.style.overflow = 'visible';
@@ -605,10 +610,12 @@ function renderWiFiUsers(data) {
     const freq = formatWiFiFreq(net.getFrequency());
     for (let bss of net.assocList) {
       const { mac, noise, signal, rx, tx } = bss;
-      let name = hosts.getHostnameByMACAddr(mac);
+      if (!mac) continue;
+      const upperMac = mac.toUpperCase();
+      let name = hosts.getHostnameByMACAddr(upperMac);
       name = name ? name.slice(0, 30) : '?';
       const info = {
-        mac,
+        mac: upperMac,
         ssid,
         freq,
         name,
@@ -617,8 +624,8 @@ function renderWiFiUsers(data) {
         rx: formatWiFiRate(rx),
         tx: formatWiFiRate(tx),
         time: '%t'.format(bss.connected_time),
-        ipv4: hosts.getIPAddrByMACAddr(mac),
-        ipv6: hosts.getIP6AddrByMACAddr(mac) || '-',
+        ipv4: hosts.getIPAddrByMACAddr(upperMac),
+        ipv6: hosts.getIP6AddrByMACAddr(upperMac) || '-',
         wifiVer: getWifiVersion(rx, tx),
         net
       };
@@ -632,27 +639,29 @@ function renderWiFiUsers(data) {
 
 function renderOtherUsers(data) {
   const [, hosts, networks, onlineUsers, leases] = data;
-  if (onlineUsers.length === 0) return [];
+  if (!onlineUsers || onlineUsers.length === 0) return [];
 
   const wifiUsers = new Map();
   for (let net of networks) {
     for (let bss of net.assocList) {
-      wifiUsers.set(bss.mac, true);
+      if (bss.mac) wifiUsers.set(bss.mac.toUpperCase(), true);
     }
   }
 
   const users = [];
   const time = calcOnlineTime(leases.dhcp_leases);
   for (let mac of onlineUsers) {
-    if (wifiUsers.has(mac)) continue;
-    let name = hosts.getHostnameByMACAddr(mac);
+    if (!mac) continue;
+    const upperMac = mac.toUpperCase();
+    if (wifiUsers.has(upperMac)) continue;
+    let name = hosts.getHostnameByMACAddr(upperMac);
     name = name ? name.slice(0, 30) : '?';
     const info = {
-      mac,
+      mac: upperMac,
       name,
-      time: time[mac] > 0 ? '%t'.format(time[mac]) : '-',
-      ipv4: hosts.getIPAddrByMACAddr(mac),
-      ipv6: hosts.getIP6AddrByMACAddr(mac) || '-'
+      time: time[upperMac] > 0 ? '%t'.format(time[upperMac]) : '-',
+      ipv4: hosts.getIPAddrByMACAddr(upperMac),
+      ipv6: hosts.getIP6AddrByMACAddr(upperMac) || '-'
     };
     users.push({ name, box: renderUserBox(info) });
   }
