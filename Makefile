@@ -5,7 +5,7 @@
 include $(TOPDIR)/rules.mk
 
 # 包信息
-LUCI_TITLE:=Simplified Overview Widgets for LuCI  # 插件标题
+LUCI_TITLE:=Overview Widgets for LuCI  # 插件标题
 LUCI_DEPENDS:=+luci-base  # 依赖项
 
 # 许可证信息
