@@ -15,16 +15,26 @@ const Store = {
   iconFiles: []
 };
 
+// 使用 RPC 获取网络设备信息
+let callNetworkDevices = rpc.declare({
+  object: 'luci-rpc',
+  method: 'getNetworkDevices',
+  expect: { '': {} }
+});
+
 function getStaticIPHosts() {
   return uci.load('dhcp').then(() => {
     const hosts = [];
     uci.sections('dhcp', 'host', (host) => {
       if (host.ip) {
-        hosts.push({
-          name: host.name || 'Unknown',
-          ip: host.ip,
-          mac: host.mac ? host.mac.toUpperCase() : 'Unknown',
-          leasetime: host.leasetime || '12h'
+        const macs = host.mac ? (Array.isArray(host.mac) ? host.mac : [host.mac] : [];
+        macs.forEach(mac => {
+          hosts.push({
+            name: host.name || 'Unknown',
+            ip: host.ip,
+            mac: mac.toUpperCase(),
+            leasetime: host.leasetime || '12h'
+          });
         });
       }
     });
@@ -46,12 +56,13 @@ function getOnlineUsers() {
 }
 
 function getTrafficStats() {
-  return network.getNetworkDevices().then((devices) => {
-    const stats = {};
+  // 使用 RPC 替代 network.getNetworkDevices
+  return callNetworkDevices().then((devices) => {
+    const stats = { tx_bytes: 0, rx_bytes: 0 };
     Object.values(devices).forEach((dev) => {
-      if (dev.name === 'br-lan') {
-        stats.tx_bytes = dev.stats.tx_bytes;
-        stats.rx_bytes = dev.stats.rx_bytes;
+      if (dev.name === 'br-lan' && dev.stats) {
+        stats.tx_bytes = dev.stats.tx_bytes || 0;
+        stats.rx_bytes = dev.stats.rx_bytes || 0;
       }
     });
     return stats;
