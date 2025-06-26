@@ -4,7 +4,7 @@
     "read": {
       "ubus": {
         "luci": ["getCPUInfo", "getTempInfo"],
-        "network.device": ["status"]
+        "luci-rpc": ["getNetworkDevices"]
       },
       "file": {
         "/etc/overview.json": ["read"],
