@@ -27,7 +27,7 @@ msgid "Mbit/s"
 msgstr ""
 
 #: htdocs/luci-static/resources/view/status/include/03_users.js:700
-msgid "WiFi Online Users"  # 修改为WiFi在线用户
+msgid "Wireless Users"  # 修改为无线用户
 msgstr ""
 
 #: htdocs/luci-static/resources/view/status/include/02_ports.js:184
