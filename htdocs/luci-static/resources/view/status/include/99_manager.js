@@ -80,7 +80,7 @@ function renderManager(items) {
       checked: defaultVisible && extname === '.js'
     });
     
-    const labelText = basename === '03_users' ? 'WiFi Online Users' : basename;
+    const labelText = basename === '03_users' ? 'Wireless Users' : basename;
     const label = E('label', { for: itemId, style: css.label }, labelText);
     
     checkboxItems.push(checkbox);

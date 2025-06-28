@@ -574,7 +574,7 @@ function renderWiFiUsers(data) {
 }
 
 return baseclass.extend({
-  title: _('WiFi Online Users'),  // 修改标题为WiFi在线用户
+  title: _('Wireless Users'),  // 修改标题为WiFi在线用户
 
   load: function () {
     L.resolveDefault(uci.load('dhcp'));
@@ -607,7 +607,7 @@ return baseclass.extend({
 
     return E('div', { style: css.box }, [
       renderIconsCard(data[3]),
-      renderTitle(_('WiFi Online Users'), users.length, 'online-users'),  // 修改标题为WiFi在线用户
+      renderTitle(_('Wireless Users'), users.length, 'online-users'),  // 修改标题为无线用户
       E('div', { id: 'online-users', style: css.grid }, users)
     ]);
   }
