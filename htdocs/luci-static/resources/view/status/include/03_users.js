@@ -574,7 +574,7 @@ function renderWiFiUsers(data) {
 }
 
 return baseclass.extend({
-  title: _('Wireless Users'),  // 修改标题为WiFi在线用户
+  title: _('Wireless Users'),  // 修改标题为无线用户
 
   load: function () {
     L.resolveDefault(uci.load('dhcp'));
