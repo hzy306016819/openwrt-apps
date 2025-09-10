@@ -11,6 +11,9 @@ echo 'src-git apps https://github.com/hzy306016819/openwrt-apps' >>feeds.conf.de
 ```bash
 ./scripts/feeds install -a
 ```
+```
+make menuconfig
+```
 3.编译ikp插件
 
 ```bash
