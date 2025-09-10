@@ -18,7 +18,7 @@ make menuconfig
 3.编译ikp插件
 
 ```bash
-make package/aliyundrive-webdav/prepare V=s
+make package/luci-app-aliyundrive-webdav/compile V=s
 ```
 或（下面的好像不显编译过程）
 
