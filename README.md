@@ -1,7 +1,7 @@
 # 这是自建仓库：https://github.com/hzy306016819/openwrt-apps
 ## **1. 仓库目录**
 ### 1.Makefile 是一个空文件
-```
+```Makefile
 include $(TOPDIR)/rules.mk
 如果目录不存在或为空，说明插件未正确放置。重新执行：
 ```
