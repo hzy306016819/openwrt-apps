@@ -1,5 +1,5 @@
 # 这是自建仓库：https://github.com/hzy306016819/openwrt-apps
-**添加插件先在本地编译测试** **添加插件先在本地编译测试**  **添加插件先在本地编译测试**
+**✨添加插件先在本地编译测试✨** **✨添加插件先在本地编译测试✨**  **✨添加插件先在本地编译测试✨**
 ## **一.使用**
 1.添加库（云编译在diy-part1.sh添加）
 echo 'src-git apps https://github.com/hzy306016819/openwrt-apps' >>feeds.conf.default
