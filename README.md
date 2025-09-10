@@ -56,25 +56,3 @@ endef
 ```
 DEPENDS 行列出了所有依赖项。
 
-
-## **2. 修复配置不同步警告**
-运行以下命令同步配置：要选择*
-```
-make menuconfig
-```
-直接保存退出（不修改任何配置），或运行：
-```
-make defconfig
-```
-
-## **3. 重新尝试编译**
-如果插件路径正确，直接编译（无需先 `clean`）：
-```
-make package/feeds/luci/luci-app-overview-widgets/compile V=s
-```
-如果仍失败，强制重新编译：
-```
-make package/feeds/luci/luci-app-overview-widgets/{clean,compile} V=s
-```
-
-
