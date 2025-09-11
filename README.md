@@ -12,6 +12,13 @@ echo 'src-git apps https://github.com/hzy306016819/openwrt-apps' >>feeds.conf.de
 ```bash
 ./scripts/feeds install -a
 ```
+单独更新apps库
+```bash
+./scripts/feeds update apps
+```
+```bash
+./scripts/feeds install apps
+```
 ```
 make menuconfig
 ```
