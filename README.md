@@ -74,6 +74,8 @@ https://github.com/tty228/luci-app-wechatpush
 ### 4.
 https://github.com/zzsj0928/luci-app-pushbot
 ### 5.luci-app-overview-widgets 按恩山大佬的修改
+### 6.网络流量监控
+https://github.com/timsaya/luci-app-bandix/
 
 
 
