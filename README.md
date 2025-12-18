@@ -69,7 +69,7 @@ DEPENDS 行列出了所有依赖项。
 https://github.com/messense/aliyundrive-webdav
 ### 2.adguardhome
 https://github.com/rufengsuixing/luci-app-adguardhome
-###3.
+### 3.
 https://github.com/tty228/luci-app-wechatpush
 ### 4.
 https://github.com/zzsj0928/luci-app-pushbot
