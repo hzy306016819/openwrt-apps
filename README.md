@@ -77,14 +77,14 @@ https://github.com/zzsj0928/luci-app-pushbot
 ### 6.网络流量监控
 https://github.com/timsaya/luci-app-bandix/
 =====================================================================================================
-### 下面项目再次单个下载
-https://github.com/kenzok8/small-package
-luci-app-xunlei（迅雷）
-luci-app-unishare   （依赖unishare）（共享盘samba4）测试
-[luci-app-wolplus
-luci-app-wifidog
-luci-app-cloudflarespeedtest（依赖cdnspeedtest）cfip优选
-luci-app-sunpanel  （依赖sunpanel）导航
+### 下面项目再次单个下载<br>
+https://github.com/kenzok8/small-package<br>
+luci-app-xunlei（迅雷）<br>
+luci-app-unishare   （依赖unishare）（共享盘samba4）测试<br>
+[luci-app-wolplus<br>
+luci-app-wifidog<br>
+luci-app-cloudflarespeedtest（依赖cdnspeedtest）cfip优选<br>
+luci-app-sunpanel  （依赖sunpanel）导航<br>
 
 
 
