@@ -69,13 +69,24 @@ DEPENDS 行列出了所有依赖项。
 https://github.com/messense/aliyundrive-webdav
 ### 2.adguardhome
 https://github.com/rufengsuixing/luci-app-adguardhome
-### 3.
+### 3.微信推送（已取消使用）
 https://github.com/tty228/luci-app-wechatpush
-### 4.
+### 4.全能推送
 https://github.com/zzsj0928/luci-app-pushbot
 ### 5.luci-app-overview-widgets 按恩山大佬的修改
 ### 6.网络流量监控
 https://github.com/timsaya/luci-app-bandix/
+=====================================================================================================
+### 下面项目再次单个下载
+https://github.com/kenzok8/small-package
+luci-app-xunlei（迅雷）
+luci-app-unishare   （依赖unishare）（共享盘samba4）测试
+[luci-app-wolplus
+luci-app-wifidog
+luci-app-cloudflarespeedtest（依赖cdnspeedtest）cfip优选
+luci-app-sunpanel  （依赖sunpanel）导航
+
+
 
 
 
