@@ -4,16 +4,26 @@ local jsonc = require "luci.jsonc"
 local sunpanel = {}
 
 sunpanel.blocks = function()
-  local f = io.popen("lsblk -s -f -b -o NAME,FSSIZE,MOUNTPOINT --json", "r")
+  local f = io.popen("lsblk -s -f -b -o NAME,FSSIZE,MOUNTPOINT --json 2>/dev/null", "r")
   local vals = {}
   if f then
     local ret = f:read("*all")
     f:close()
+    
+    if not ret or ret == "" then
+      return vals
+    end
+    
     local obj = jsonc.parse(ret)
+    if not obj or not obj["blockdevices"] then
+      return vals
+    end
+    
     for _, val in pairs(obj["blockdevices"]) do
       local fsize = val["fssize"]
-      if fsize ~= nil and string.len(fsize) > 10 and val["mountpoint"] then
-        -- fsize > 1G
+      -- 修改条件：移除容量限制或降低到100MB (8位数)
+      if fsize ~= nil and val["mountpoint"] then
+        -- 只要有挂载点就返回，不限制大小
         vals[#vals+1] = val["mountpoint"]
       end
     end
@@ -40,7 +50,7 @@ sunpanel.find_paths = function(blocks, home_dirs, path_name)
   if #blocks == 0 then
     table.insert(configs, default_path)
   else
-    for _, val in pairs(blocks) do 
+    for _, val in pairs(blocks) do
       table.insert(configs, val .. "/" .. path_name .. "/SunPanel")
     end
     local without_conf_dir = "/root/" .. path_name .. "/SunPanel"
