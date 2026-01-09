@@ -87,6 +87,7 @@ luci-app-cloudflarespeedtest（依赖cdnspeedtest）cfip优选<br>
 luci-app-sunpanel  （依赖sunpanel）导航<br>
 
 ==============================下面更新内容=======================================================================
+2026-1-9：修复luci-app-overview-widgets 端口和信号强度 图片不显示。
 
 
 
