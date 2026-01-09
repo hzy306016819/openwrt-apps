@@ -63,8 +63,9 @@ function getPortColor(carrier, duplex) {
   return 'darkorange';
 }
 
+// 完全采用第二段代码的图片逻辑
 function getPortIcon(carrier) {
-  return L.resource(`icons/port_${carrier ? 'up' : 'down'}.png`);
+  return L.resource('icons/port_%s.svg').format(carrier ? 'up' : 'down');
 }
 
 function getPorts(board, netdevs, switches, portflow) {
@@ -165,7 +166,11 @@ function renderPorts(data) {
       E('div', {}, [
         E('div', { style: css.head + color }, ifname),
         E('div', { style: css.body }, [
-          E('img', { style: css.icon, src: getPortIcon(carrier) }),
+          // 完全采用第二段代码的图片引用方式
+          E('img', { 
+            style: css.icon, 
+            src: getPortIcon(carrier)
+          }),
           E('div', { style: css.speed }, formatSpeed(port.speed)),
           E('div', { style: css.flow }, [
             '\u25b2\u202f%1024.1mB'.format(carrier ? port.txflow : 0),
