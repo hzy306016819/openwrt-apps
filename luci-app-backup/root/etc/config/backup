@@ -1,6 +1,6 @@
 
 config config 'config'
-	option password '111'
+	option password 'hzy'
 	option backup_dir '/tmp/backup'
 
 config task
