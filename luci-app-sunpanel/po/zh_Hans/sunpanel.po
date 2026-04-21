@@ -19,3 +19,11 @@ msgstr "全局配置"
 msgid "Status"
 msgstr "状态"
 
+msgid "The SunPanel service is running."
+msgstr "SunPanel 服务正在运行。"
+
+msgid "Click to open SunPanel"
+msgstr "点击打开 SunPanel"
+
+msgid "The SunPanel service is not running."
+msgstr "SunPanel 服务未运行。"
