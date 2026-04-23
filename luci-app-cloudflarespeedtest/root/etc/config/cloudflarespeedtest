@@ -9,7 +9,7 @@ config global 'global'
 	option tll '40'
 	option custome_url 'https://speed.cloudflare.com/__down?bytes=30000000'
 	option threads '200'
-	option speed '100'
+	option speed '50'
 
 config servers 'servers'
 	option ssr_enabled '0'
