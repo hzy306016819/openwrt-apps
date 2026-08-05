@@ -7,22 +7,22 @@ local http = require("luci.http")
 local dispatcher = require("luci.dispatcher")
 
 function index()
-    entry({"admin", "system", "backup"}, 
+    entry({"admin", "services", "backup"}, 
           firstchild(),  
           _("智能备份恢复"), 
           60).dependent = false
     
-    entry({"admin", "system", "backup", "execute"}, 
+    entry({"admin", "services", "backup", "execute"}, 
           call("action_backup"), 
           _("执行备份"), 
           10).dependent = false
     
-    entry({"admin", "system", "backup", "settings"}, 
+    entry({"admin", "services", "backup", "settings"}, 
           call("action_settings"), 
           _("设置"), 
           20).dependent = false
 
-    entry({"admin", "system", "backup", "restore"}, 
+    entry({"admin", "services", "backup", "restore"}, 
           call("action_restore"), 
           _("执行恢复"), 
           15).dependent = false
