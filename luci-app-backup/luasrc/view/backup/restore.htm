@@ -13,7 +13,7 @@
     <!-- 步骤一：选择目录 -->
     <fieldset class="cbi-section">
         <legend><%:步骤一：选择备份目录%></legend>
-        <form method="post" action="<%=controller%>/admin/system/backup/restore">
+        <form method="post" action="<%=REQUEST_URI%>">
             <div class="cbi-value">
                 <label class="cbi-value-title"><%:备份目录路径%></label>
                 <div class="cbi-value-field">
@@ -216,7 +216,22 @@
         
         // 获取密码和解密选项
         var password = document.getElementById('password_input').value;
-        var decrypt = (password && password.length > 0) ? '1' : '0';
+
+		// 只有选中的文件里确实有 .gpg 的，才需要解密
+		var hasGpgFile = false;
+		for (var i = 0; i < selectedFiles.length; i++) {
+			if (/\.gpg$/i.test(selectedFiles[i])) {
+				hasGpgFile = true;
+			break;
+			}
+		}
+
+		if (hasGpgFile && (!password || password.length === 0)) {
+			alert('<%:所选文件包含加密文件，请输入解密密码%>');
+			return;
+		}
+
+var decrypt = hasGpgFile ? '1' : '0';
         
         // 创建FormData
         var formData = new FormData();
@@ -231,7 +246,7 @@
         
         // 发送AJAX请求
         var xhr = new XMLHttpRequest();
-        xhr.open('POST', '<%=controller%>/admin/system/backup/restore', true);
+        xhr.open('POST', '<%=REQUEST_URI%>', true);
         
         xhr.onload = function() {
             clearInterval(progressInterval);
@@ -263,9 +278,13 @@
                         
                         resultContent.innerHTML = resultHtml.replace(/\n/g, '<br>');
                     } else {
-                        statusEl.innerHTML = '<%:恢复失败,gpg格式的请确认密码是否正确%>';
+                        // 修改点：去掉写死的"gpg格式的请确认密码是否正确"误导文案，
+                        // 状态行只显示中性的"恢复失败"，具体原因交给下方结果框显示后端的 response.message
+                        statusEl.innerHTML = '<%:恢复失败%>';
                         statusEl.className = 'cbi-status-error';
                         resultContent.className = 'cbi-section-error';
+                        // 下方结果框显示后端返回的真实错误消息（response.message），
+                        // 例如"所有 1 个文件均恢复失败"；若后端无消息则显示"未知错误"
                         resultContent.innerHTML = '❌ <%:错误：%> ' + (response.message || '<%:未知错误%>');
                     }
                 } catch (e) {
